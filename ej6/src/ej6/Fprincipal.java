@@ -26,6 +26,9 @@ public class Fprincipal extends JFrame implements ActionListener{
         this.setFocusable(true);
 
         JMenu m = new JMenu("Opciones");
+        JMenuItem guardar = new JMenuItem("Guardar");        
+        guardar.addActionListener(this);
+        m.add(guardar);
         JMenuItem records = new JMenuItem("Ver records");        
         records.addActionListener(this);
         m.add(records);
@@ -76,7 +79,7 @@ public class Fprincipal extends JFrame implements ActionListener{
         }else if(arg0.getSource() == this.jugar){
             timer.start();
             btnjugar();
-        }else if(arg0.getSource() == this.menu.getMenu(0).getItem(0)){
+        }else if(arg0.getSource() == this.menu.getMenu(0).getItem(1)){
             timer.stop();//Si se quieren ver los records en medio de una partida se pausa la partida.
             btnjugar();
             if(file.exists() && file.length() > 0){
@@ -87,6 +90,12 @@ public class Fprincipal extends JFrame implements ActionListener{
             }else{
                 JOptionPane.showMessageDialog(this, "El archivo de puntuaciones está vacio!");
             }
+        }else if(arg0.getSource() == this.menu.getMenu(0).getItem(0)){
+            timer.stop();
+            btnjugar();
+            g = new Guardar(this);
+            g.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            g.setVisible(true);
         }else{
             if(cont % 50 == 0 && cont != 0){//Intervalo de tiempo que controla la bajada de las bombas.
                 if(intervalo -50 > 0){
