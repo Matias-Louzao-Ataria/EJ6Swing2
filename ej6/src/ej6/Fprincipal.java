@@ -23,7 +23,6 @@ public class Fprincipal extends JFrame implements ActionListener{
     public Fprincipal() {
         super("Esquiva las minas!");
         this.setLayout(null);
-        this.setFocusable(true);
 
         JMenu m = new JMenu("Opciones");
         JMenuItem guardar = new JMenuItem("Guardar");        
@@ -49,12 +48,13 @@ public class Fprincipal extends JFrame implements ActionListener{
         izquierda.setSize(izquierda.getPreferredSize());
         izquierda.setLocation(45,440);
         izquierda.addActionListener(this);
-        this.addKeyListener(new KeyboardHandler(this));
+        izquierda.addKeyListener(new KeyboardHandler(this));
         this.add(izquierda);
 
         derecha.setSize(derecha.getPreferredSize());
         derecha.setLocation(100,440);
         derecha.addActionListener(this);
+        derecha.addKeyListener(new KeyboardHandler(this));
         this.add(derecha);
 
         int espacio = 10;
